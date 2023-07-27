@@ -4,11 +4,9 @@
 
 ```function main(){
     try {
-       //只需要在此处填写包名.类名即可
-        hookClass("javax.crypto.Cipher")
+        //在此处填写需要hook的类即可
+        hookClass("com.appsflyer.internal.c")
     }catch (e) {
         console.log("没有找到该类")
-    }
-//hookClass("javax.crypto.Cipher")
-}```
+    }}```
 
