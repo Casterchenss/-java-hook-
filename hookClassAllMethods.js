@@ -1,7 +1,21 @@
 function logInf(classs){
-    // console.log(String(classs.getName()))
-    console.log(classs)
-    // hookClass(String(classs.getName()))
+    Java.perform(function (){
+        var Modifier = Java.use("java.lang.reflect.Modifier");
+        var Field = Java.use("java.lang.reflect.Field");
+        var modifiers = classs.getModifiers();
+        classs.setAccessible(true);
+        if (Modifier.isStatic(modifiers)) {
+            // 静态字段
+            var value = classs.get(null);
+            console.log(classs + " =>"  + value)
+        } else {
+             console.log(classs)
+        }
+    })
+
+
+
+
 }
 function getAllsonClass(classs){
     console.log('\n')
@@ -50,13 +64,11 @@ Java.perform(function(){
 })
 }
 function main(){
-//只需要在此处填写包名.类名即可
     try {
         hookClass("com.example.myapplication4.MainActivity")
     }catch (e) {
         console.log("没有找到该类")
     }
-//hookClass("javax.crypto.Cipher")
 }
 
 setImmediate(main)
